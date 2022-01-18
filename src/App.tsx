@@ -1,23 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
+  const [text, setText] = useState<string>('')
+
+  console.log(text.split(' ').filter(letter => letter !== '').length)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header className="App-content">
+        <h1>Paste you text</h1>
+        <textarea name="textarea" id="textarea" value={text} onChange={(e) => setText(e.target.value)} ></textarea>
+        <h3>Words: {text.split(' ').filter(letter => letter !== '').length}</h3>
+        <h3>Characters: {text.length}</h3>
+        {!!text && <button className="reset" onClick={()=> setText('')}>Reset</button>}
+        
+
       </header>
     </div>
   );
